@@ -7,7 +7,7 @@
     <title>Latihan 1 c</title>
 
     <style>
-        .lingkaran {
+        td {
             width : 30px;
             height : 30px;
             background-color :red;
@@ -21,40 +21,41 @@
             padding-left :10px;
 
         }
+
+        .clear {
+            clear : both;
+        }
     </style>
 
 </head>
 
 <body>
+
+<table>
     <tr>
     <?php for ($i=1; $i <=1 ; $i++) : ?>   
-        <div class="lingkaran">
-            <td><p><?php echo "$i"; ?></p></td>
-            <?php for ($j=2; $j <=2 ; $j++) : ?>
-            <th></th>
-            
-            <?php endfor; ?>
-        </div>
+        <td><p><?php echo "$i"; ?></p></td>
+        <?php for ($j=2; $j <=2 ; $j++) : ?>
+        <th></th>
+        <?php endfor; ?>
+        
     <?php endfor; ?>
     </tr> 
-
-    <?php for ($i=2; $i <= 3 ; $i++) : ?>
         
         <?php for ($j=1; $j <3 ; $j++) : ?>
-        <div class="lingkaran">
-            <th><p><?php echo"$i"; ?></p></th>
-        </div>
-        <?php endfor;?>
-    <?php endfor;?>
-
-    <?php for ($i=3; $i <= 3 ; $i++) : ?>
-        <?php for ($j=1; $j <4 ; $j++) : ?>
-            <th></th>
-        <?php endfor;?>
-        <div class="lingkaran">
+            <?php for ($i=2; $i < 3 ; $i++) :?>
             <td><p><?php echo"$i"; ?></p></td>
-        </div>
-    <?php endfor;?>
+            <?php endfor;?>
+        <?php endfor;?>
+    </tr>
+        <?php for ($j=1; $j <4 ; $j++) : ?>
+            <?php for ($i=3; $i <4 ; $i++) :?>
+            <td><p><?php echo"$i"; ?></p></td>
+            <?php endfor;?>
+        <?php endfor;?>
+
+
+</table>
     
     
 
