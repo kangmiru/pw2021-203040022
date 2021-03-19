@@ -29,7 +29,7 @@
             "kategori" => "Casual"
         ],
         [
-            "gambar" => "leedoo.jpg" ,
+            "gambar" => "leedoo.png" ,
             "nama" => "Leedoo",
             "deskripsi" => "Tersedia dalam ukuran 38-46, mendapat gratis sepasang kaos kaki",
             "harga" => "Rp. 203.000,00",
@@ -83,6 +83,38 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+      .btn {
+          background-color: red;
+      }
+      .btn:hover {
+          background-color: firebrick;
+      }
+      .navbar-nav {
+          margin-left: 490px;
+      }
+      body {
+          background-color: midnightblue;
+      }
+      button {
+          background-color: royalblue;
+      }
+      img {
+          height: 250px;
+          width: auto;
+      }
+      .table {
+          margin-top: 50px;
+      }
+      tbody {
+          background-color: lightgray;
+      }
+      thead {
+          background-color: darkviolet;
+          color: white;
+      }
+    </style>
+    
     <title>latihan 3e</title>
   </head>
   <body>
@@ -100,8 +132,17 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Produk</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Type</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Type
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Casual</a></li>
+            <li><a class="dropdown-item" href="#">Sport</a></li>
+            <li><a class="dropdown-item" href="#">Formal</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Keranjang</a>
@@ -113,6 +154,33 @@
     </div>
   </div>
 </nav>
+
+<table class="table" border = 1 cellpadding = "10" celspacing = "0">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Gambar</th>
+      <th scope="col">Nama</th>
+      <th scope="col">Deskripsi</th>
+      <th scope="col">Harga</th>
+      <th scope="col">Kategori</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach($sepatu as $no => $s): ?>
+    <tr>
+      <td><?=$no+1;?></td>
+      <td><img src="img/<?= $s["gambar"];?>" alt=""></td>
+      <td><?= $s["nama"];?></td>
+      <td><?= $s["deskripsi"];?></td>
+      <td><?= $s["harga"];?></td>
+      <td><button><?= $s["kategori"];?></button></td>
+    </tr>
+    <?php endforeach;?>
+  </tbody>
+</table>
+
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
