@@ -1,7 +1,7 @@
 <?php
     if ( isset($_POST["submit"])) {
         if ($_POST["user"] == "admin" && $_POST["pass"] == "123") {
-            header("Location : admin.php");
+            header("Location: admin.php");
             exit;
         } else {
             $error = true;
