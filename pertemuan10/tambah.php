@@ -31,16 +31,16 @@ if (isset($_POST['tambah']) > 0) {
     <form action="" method="post">
         <ul>
             <li>
-                <label for="">Nama : <input type="text" name="nama" autofocus required></label>
+                <label for="nama">Nama : <input type="text" name="nama" autofocus required></label>
             </li>
             <li>
-                <label for="">Email : <input type="text" name="email" required></label>
+                <label for="email">Email : <input type="text" name="email" required></label>
             </li>
             <li>
-                <label for="">Pangkat : <input type="text" name="pangkat" required></label>
+                <label for="pangkat">Pangkat : <input type="text" name="pangkat" required></label>
             </li>
             <li>
-                <label for="">Gambar : <input type="text" name="foto" required></label>
+                <label for="foto">Gambar : <input type="text" name="foto" required></label>
             </li>
             <li>
                 <button type="submit" name="tambah">Tambah</button>

@@ -1,0 +1,33 @@
+.btn {
+    background-color: red;
+}
+.btn:hover {
+    background-color: firebrick;
+}
+.navbar-nav {
+    margin-left: 490px;
+}
+body {
+    background-color: midnightblue;
+}
+button {
+    background-color: royalblue;
+}
+img {
+    height: 250px;
+    width: auto;
+}
+.table {
+    margin-top: 50px;
+}
+tbody {
+    background-color: lightgray;
+}
+thead {
+    background-color: darkviolet;
+    color: white;
+}
+.nama {
+    color: black;
+    font-style: none;
+}

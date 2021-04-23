@@ -1,6 +1,9 @@
 <?php
 function koneksi(){
-    return mysqli_connect("localhost","root","","latihan_pw");
+    $conn = mysqli_connect("localhost","root","");
+    mysqli_select_db($conn, "latihan_pw");
+
+    return $conn;
 }
 
 function query($query){
@@ -22,14 +25,14 @@ function query($query){
     function tambah($data){
         $conn = koneksi();
 
+        $gambar = htmlspecialchars($data['foto']);
         $nama = htmlspecialchars($data['nama']);
         $email = htmlspecialchars($data['email']);
         $pangkat = htmlspecialchars($data['pangkat']);
-        $gambar = htmlspecialchars($data['gambar']);
 
         $query = "INSERT INTO survey_corps
                     VALUES
-                    (null,'$nama','$email','$pangkat','$gambar');
+                    ('','$gambar','$nama','$email','$pangkat');
                     ";
         mysqli_query($conn, $query);
 
