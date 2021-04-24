@@ -31,6 +31,8 @@
         
         mysqli_query($conn, $query);
 
+        echo mysqli_error($conn);
+
         return mysqli_affected_rows($conn);
     }
 
@@ -38,6 +40,8 @@
         $conn = koneksi();
 
         mysqli_query($conn, "DELETE FROM fashion WHERE id = $id");
+
+        echo mysqli_error($conn);
 
         return mysqli_affected_rows($conn);
     }
@@ -64,6 +68,8 @@
         
         mysqli_query($conn, $query);
 
+        echo mysqli_error($conn);
+
         return mysqli_affected_rows($conn);
     }
 
@@ -72,7 +78,7 @@
         $username = strtolower(stripcslashes($data["username"]));
         $password = mysqli_real_escape_string($conn, $data["password"]);
 
-        $result = mysqli_query($conn, "SELECT username FROM pengguna WHERE username = '$username'");
+        $result = mysqli_query($conn, "SELECT username FROM pengguna WHERE username = $username");
         if (mysqli_fetch_assoc($result)) {
             echo "<script>
                     alert ('username sudah digunakan');
@@ -82,8 +88,13 @@
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query_tambah = "INSERT INTO pengguna VALUES('','$username','$password')";
+        $query_tambah = "INSERT INTO 
+                            pengguna 
+                            VALUES
+                            ('','$username','$password')";
         mysqli_query($conn, $query_tambah);
+
+        echo mysqli_error($conn);
 
         return mysqli_affected_rows($conn);
     }

@@ -10,7 +10,7 @@
     if (isset($_POST["submit"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
-        $cek_user = mysqli_query(koneksi(), "SELECT * FROM pengguna WHERE username = '$username'");
+        $cek_user = mysqli_query(koneksi(), "SELECT * FROM pengguna WHERE username = $username");
 
         if (mysqli_num_rows($cek_user) > 0 ) {
             $row = mysqli_fetch_assoc($cek_user);
@@ -40,7 +40,7 @@
         $username = $_COOKIE['username'];
         $hash = $_COOKIE['hash'];
 
-        $result = mysqli_query(koneksi(), "SELECT * FROM pengguna WHERE username = '$username");
+        $result = mysqli_query(koneksi(), "SELECT * FROM pengguna WHERE username = $username");
         $row = mysqli_fetch_assoc($result);
 
         if ($hash === hash('sha256', $row['id'], false) ) {
@@ -60,7 +60,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/login.php">
     <style>
       
     </style>
