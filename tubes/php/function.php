@@ -29,9 +29,7 @@
                     VALUES
                     ('','$img','$nama','$deskripsi','$harga','$kategori')";
         
-        mysqli_query($conn, $query);
-
-        echo mysqli_error($conn);
+        mysqli_query($conn, $query)or die(mysqli_error($conn));
 
         return mysqli_affected_rows($conn);
     }
@@ -39,9 +37,7 @@
     function hapus($id){
         $conn = koneksi();
 
-        mysqli_query($conn, "DELETE FROM fashion WHERE id = $id");
-
-        echo mysqli_error($conn);
+        mysqli_query($conn, "DELETE FROM fashion WHERE id = $id") or die(mysqli_error($conn)); 
 
         return mysqli_affected_rows($conn);
     }
@@ -66,9 +62,7 @@
                     WHERE nomor = '$id'
                     ";
         
-        mysqli_query($conn, $query);
-
-        echo mysqli_error($conn);
+        mysqli_query($conn, $query)or die(mysqli_error($conn)); 
 
         return mysqli_affected_rows($conn);
     }
@@ -92,9 +86,7 @@
                             pengguna 
                             VALUES
                             ('','$username','$password')";
-        mysqli_query($conn, $query_tambah);
-
-        echo mysqli_error($conn);
+        mysqli_query($conn, $query_tambah) or die(mysqli_error($conn));
 
         return mysqli_affected_rows($conn);
     }
