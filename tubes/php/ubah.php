@@ -1,72 +1,86 @@
 <?php
 session_start();
-if (isset($_SESSION['username'])) {
-  header("location: login.php");
-  exit;
-}
 
 require 'function.php';
 
-$id = $_GET["id"];
-$fs = query("SELECT * FROM fashion WHERE nomor = $id")[0];
+if (!isset($_GET['id'])) {
+    header("location: admin.php");
+    exit;
+}
 
-if (isset($_POST['ubah'])) {
-    if (ubah($_POST) > 0 ){
+$id =$_GET['id'];
+
+$b = query("SELECT * FROM barang WHERE id = $id");
+
+if (isset($_POST['ubah']) > 0) {
+    if (ubah($_POST)) {
         echo "<script>
-                alert ('data berhasil diubah');
+                alert('data berhasil diubah');
                 document.location.href = 'admin.php';
                 </script>";
-    }else {
+    } else {
         echo "<script>
-                alert ('data gagal diubah');
-                document.location.href = 'admin.php';
+                alert('data gagal diubah');
                 </script>";
     }
-};
+}
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ubah data</title>
-</head>
-<body>
-<h3>ubah data disini</h3>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <title>Ubah Data</title>
+  </head>
+  <body>
+    <h3>Silakan Ubah Data</h3>
+
     <form action="" method="post">
+        <input type="hidden" name="id" value="<?= $b['id'] ;?>">
         <ul>
             <li>
-                <label for="img">Gambar</label><br>
-                <input type="text" name="img" id="img" required value="<?= $fs['img'];?>"><br><br>
+                <label for="gambar">Gambar : </label><br>
+                <input type="text"name="gambar" value="<?= $b['gambar'] ;?>">
             </li>
             <li>
-                <label for="nama">Nama</label><br>
-                <input type="text" name="nama" id="nama" required value="<?= $fs['nama'];?>"><br><br>
+                <label for="nama" required>Nama : </label><br>
+                <input type="text"name="nama" value="<?= $b['nama'] ;?>">
             </li>
             <li>
-                <label for="deskripsi">Deskripsi</label><br>
-                <input type="text" name="deskripsi" id="deskripsi" required value="<?= $fs['deskripsi'];?>"><br><br>
+                <label for="harga" required>Harga : </label><br>
+                <input type="text"name="harga" value="<?= $b['harga'] ;?>">
             </li>
             <li>
-                <label for="harga">Harga</label><br>
-                <input type="text" name="harga" id="harga" required value="<?= $fs['harga'];?>"><br><br>
+                <label for="deskripsi" required>Deskripsi : </label><br>
+                <input type="text"name="deskripsi" value="<?= $b['deskripsi'] ;?>">
             </li>
             <li>
-                <label for="kategori">Kategori</label><br>
-                <select name="kategori" id="kategori" required value="<?= $fs['kategori'];?>">
-                <option value="">.........pilih kategori.........</option>
-                <option value="casual">casual</option>
-                <option value="sport">sport</option>
-                </select>
+                <label for="tipe">Tipe : </label><br>
+                <input type="text" name="tipe" value="<?= $b['tipe'] ;?>">
             </li>
-            <input type="hidden" id="id" name="id" value="<?= $fs['nomor'];?>">
-            <br>
-            <button type="submit" name="ubah">ubah data!</button>
-            <button type="submit"><a href="admin.php" style="text-decoration:none; color:black">kembali</a></button>
+            <br><br>
+            <button type="submit" name="ubah">Ubah Data</button>
+            <br><br>
+            <a href="admin.php">Kembali</a>
+            
         </ul>
     </form>
-</body>
-</html>
 
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

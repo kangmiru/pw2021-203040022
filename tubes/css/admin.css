@@ -1,0 +1,35 @@
+.navbar-nav {
+    margin-left: 500px;
+}
+
+.logout {
+    background-color: greenyellow;
+    padding: 10px;
+}
+
+.table{
+    margin-top: 25px;
+    background-color: silver;
+}
+
+body {
+    background-color: darkblue ;
+}
+
+.cari {
+    margin-top: 50px;
+    margin-left: 500px;
+}
+
+.tambah {
+    background-color: yellow;
+    margin-left: 600px;
+}
+
+.hapus {
+    background-color: red;
+}
+
+.ubah{
+    background-color: aqua;
+}

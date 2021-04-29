@@ -1,11 +1,9 @@
 <?php
-require 'php/function.php';
+require 'function.php';
 
-$barang = query("SELECT * FROM barang");
+$id = $_GET['id'];
 
-if (isset($_POST['cari'])) {
-    $pasukan = cari($_POST['keyword']);
-}
+$b = query("SELECT * FROM barang WHERE id = $id");
 ?>
 
 <!doctype html>
@@ -17,15 +15,9 @@ if (isset($_POST['cari'])) {
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../css/detail1.css">
 
-    <style>
-        img {
-            height: 150px;
-        }
-    </style>
-
-    <title>TUBES PW</title>
+    <title>Detail Barang</title>
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -60,41 +52,20 @@ if (isset($_POST['cari'])) {
     </div>
   </div>
 </nav>
-
-<form action="" method="post" class="cari">
-    <input type="text" name="keyword" size="40" placeholder="masukan keyword pencarian..." autocomplete="off" autofocus>
-    <button type="submit" name="cari">Cari!</button>
-</form>
 <br><br>
 
-<div class="container">
-    <table class="table" border = 1 cellpadding = "10" cellspacing="0">
-        <tr>
-            <th>No</th>
-            <th>Gambar</th>
-            <th>Nama</th>
-            <th>Harga</th>
-        </tr>
+    <h3><?= $b['nama'] ;?></h3>
 
-        <?php if(empty($barang)):?>
-            <tr>
-                <td colspan="4"><p style="color:red; font-style:italic;">data anggota tidak ditemukan!</p></td>
-            </tr>
-        <?php endif;?>
-        
-        <?php $i =1; ?>
-        <?php foreach($barang as $b): ?>
-
-        <tr>
-            <td><?= $i++ ;?></td>
-            <td><img src="assets/img/<?= $b['gambar'] ;?>" alt=""></td>
-            <td><a href="php/detail1.php?id=<?= $b['id'];?>"><?= $b['nama'] ;?></a></td>
-            <td><?= $b['harga'];?></td>
-        </tr>
-
-        <?php endforeach;?>
-    </table>
-</div>
+    <div class="container">
+        <ul class="detail">
+            <li><img src="../assets/img/<?= $b['gambar'] ;?>" alt=""></li>
+            <li><?= $b['nama'] ;?></li>
+            <li><?= $b['harga'] ;?></li>
+            <li><?= $b['deskripsi'] ;?></li>
+            <li><?= $b['tipe'] ;?></li>
+            <li><a href="../index.php">Kembali</a></li>
+        </ul>
+    </div>
 
 
     <!-- Optional JavaScript; choose one of the two! -->

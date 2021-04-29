@@ -1,22 +1,10 @@
-<?php 
-session_start();
-if (isset($_SESSION['username'])) {
-  header("location: login.php");
-  exit;
-}
-
+<?php
 require 'function.php';
 
-if (isset($_GET["cari"])) {
-  $keyword=$_GET["keyword"];
-  $fashion = query("SELECT * FROM fashion WHERE
-                  nomor LIKE '%$keyword%' OR
-                  nama LIKE '%$keyword%' OR
-                  harga LIKE '%$keyword%' OR
-                  kategori LIKE '%$keyword%'
-                  ");
-}else{
-  $fashion = query("SELECT * FROM fashion");
+$barang = query("SELECT * FROM barang");
+
+if (isset($_POST['cari'])) {
+  $pasukan = cari($_POST['keyword']);
 }
 ?>
 
@@ -28,127 +16,110 @@ if (isset($_GET["cari"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/css.css">
-    <style>
-      .add {
-        height :auto;
-        width: 110px;
-        background-color: yellow;
-        margin: 20px 0 20px 20px;
-        line-height: center;
-        text-align: center;
-      }
-      .edit {
-        background-color: aquamarine;
-      }
-      .hapus {
-        background-color: red;
-      }
-      .cari {
-        margin-left :500px;
-      }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/admin.css">
 
+    <style>
+        img {
+            height: 150px;
+        }
     </style>
-    
-    <title>latihan 5 admin</title>
+
+    <title>TUBES PW</title>
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">SuperShoes</a>
+    <a class="navbar-brand" href="#">Fashion Kit</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Produk</a>
+          <a class="nav-link" href="#">Keranjang</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Type
+            tipe
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Casual</a></li>
-            <li><a class="dropdown-item" href="#">Sport</a></li>
-            <li><a class="dropdown-item" href="#">Formal</a></li>
+            <li><a class="dropdown-item" href="#">Sepatu</a></li>
+            <li><a class="dropdown-item" href="#">Baju</a></li>
+            <li><a class="dropdown-item" href="#">Celana</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="#">Lainnya</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Keranjang</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav mr-3">
-        <a href="logout.php"><button class="btn">Log out</button></a>
-      </ul>
+        <ul class="navbar-nav mr-3">
+            <a href="../index.php"><button class="logout">Logout</button></a>
+        </ul>
+        
     </div>
   </div>
 </nav>
-  <div class="add">
-    <a href="tambah.php">Tambah Data</a>
-  </div>
 
-  <form action="" method="get">
-      <input type="text" name="keyword" autofocus class="cari">
-      <button type="submit" name="cari">Cari</button>
-  </form>
+<form action="" method="post" class="cari">
+    <input type="text" name="keyword" size="40" placeholder="masukan keyword pencarian..." autocomplete="off" autofocus>
+    <button type="submit" name="cari">Cari!</button>
+</form>
+<br><br>
 
-    <div class="container">
-        <table class="table" border = 1 cellpadding = "10" celspacing = "0">
-          
+<div>
+  <a href="tambah.php"><button class="tambah">Tambah data disini!!</button></a>
+</div>
+
+<div class="container">
+    <table class="table" border = 1 cellpadding = "10" cellspacing="0">
+        <tr>
+            <th>No</th>
+            <th>Aksi</th>
+            <th>Gambar</th>
+            <th>Nama</th>
+            <th>Harga</th>
+            <th>Deskripsi</th>
+            <th>Tipe</th>
+        </tr>
+
+        <?php if(empty($barang)):?>
             <tr>
-              <th scope="col">no</th>
-              <th scope="col">edit</th>
-              <th scope="col">Gambar</th>
-              <th scope="col">Nama</th>
-              <th scope="col">Deskripsi</th>
-              <th scope="col">Harga</th>
-              <th scope="col">Kategori</th>
+                <td colspan="4"><p style="color:red; font-style:italic;">data anggota tidak ditemukan!</p></td>
             </tr>
-            <?php if(empty($fashion)): ?>
-              <tr>
-                <td colspan="7">
-                  <h1>Data tidak ditemukan</h1>
-                </td>
-              </tr>
-            <?php else : ?>
-            <?php $i = 1 ; ?>
-            <?php foreach ($fashion as $fs) : ?>
-            <tr>
-              <td><?= $i;?></td>
-              <td>
-                <a href="ubah.php?id=<?= $fs["nomor"];?>"><button class="edit">edit</button></a>
-                <a href="hapus.php?id=<?= $fs["nomor"];?>" onclick="return confirm('Hapus Data??')"><button class="hapus">hapus</button></a> 
-              </td>
-              <td><img src="../assets/img/<?= $fs["img"];?>" alt=""></td>              
-              <td><a href="php/detail.php?id=<?= $fs['nomor'];?>"><?=$fs["nama"];?></a></td>
-              <td><?= $fs["deskripsi"];?></td>
-              <td><?= $fs["harga"];?></td>
-              <td><button><?= $fs["kategori"];?></button></td>
-            </tr>
-            <?php $i++?>
-            <?php endforeach;?>
-            <?php endif;?>
-          
-        </table>
-    </div>
+        <?php endif;?>
+        
+        <?php $i =1; ?>
+        <?php foreach($barang as $b): ?>
+
+        <tr>
+            <td><?= $i++ ;?></td>
+            <td>
+              <a href="hapus.php?id=<?= $b['id'] ;?>" onclick="return comfirm('apakah anda yakin??;')"><button class="hapus">Hapus</button></a>
+              <a href="ubah.php?id=<?= $b['id'] ;?>"><button class="ubah">Ubah</button></a>
+            </td>
+            <td><img src="../assets/img/<?= $b['gambar'] ;?>" alt=""></td>
+            <td><?= $b['nama'] ;?></td>
+            <td><?= $b['harga'];?></td>
+            <td><?= $b['deskripsi'];?></td>
+            <td><?= $b['tipe'];?></td>
+        </tr>
+
+        <?php endforeach;?>
+    </table>
+</div>
 
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     -->
   </body>
 </html>

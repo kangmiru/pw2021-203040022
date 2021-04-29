@@ -1,0 +1,22 @@
+.navbar-nav {
+    margin-left: 500px;
+}
+
+.login {
+    background-color: red;
+    padding: 10px;
+}
+
+.table{
+    margin-top: 25px;
+    background-color: silver;
+}
+
+body {
+    background-color: darkblue ;
+}
+
+.cari {
+    margin-top: 50px;
+    margin-left: 500px;
+}
