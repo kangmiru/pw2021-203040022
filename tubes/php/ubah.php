@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+    exit;
+}
+
 require 'function.php';
 
 if (!isset($_GET['id'])) {
@@ -41,12 +46,14 @@ if (isset($_POST['ubah']) > 0) {
   <body>
     <h3>Silakan Ubah Data</h3>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $b['id'] ;?>">
         <ul>
             <li>
+                <input type="hidden" name="gambar_lama" value="<?= $b['gambar'] ;?>">
                 <label for="gambar">Gambar : </label><br>
-                <input type="text"name="gambar" value="<?= $b['gambar'] ;?>">
+                <input type="file" name="gambar" class="gambar" onchange="previewImage()">
+                <img src="../assets/img/<?= $b['gambar'] ;?>" width="120" style="display: block;" class="img-preview">
             </li>
             <li>
                 <label for="nama" required>Nama : </label><br>

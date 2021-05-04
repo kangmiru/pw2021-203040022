@@ -19,15 +19,15 @@
     function tambah($data){
         $conn = koneksi();
 
-        $img = htmlspecialchars($data['img']);
+        $img = htmlspecialchars($data['gambar']);
         $nama = htmlspecialchars($data['nama']);
         $deskripsi = htmlspecialchars($data['deskripsi']);
         $harga = htmlspecialchars($data['harga']);
-        $kategori = htmlspecialchars($data['kategori']);
+        $kategori = htmlspecialchars($data['tipe']);
 
-        $query = "INSERT INTO fashion
+        $query = "INSERT INTO barang
                     VALUES
-                    ('','$img','$nama','$deskripsi','$harga','$kategori')";
+                    ('','$img','$nama','$harga','$deskripsi','$kategori')";
         
         mysqli_query($conn, $query);
 
@@ -37,7 +37,7 @@
     function hapus($id){
         $conn = koneksi();
 
-        mysqli_query($conn, "DELETE FROM fashion WHERE id = $id");
+        mysqli_query($conn, "DELETE FROM barang WHERE id = $id");
 
         return mysqli_affected_rows($conn);
     }

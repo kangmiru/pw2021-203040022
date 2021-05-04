@@ -33,6 +33,16 @@ if (isset($_POST["register"])) {
     <form action="" method="post">
         <table>
         <tr>
+            <td><label for="nama">Nama</label></td>
+            <td>:</td>
+            <td><input type="text" name="nama"></td>
+        </tr>
+        <tr>
+            <td><label for="email">Email</label></td>
+            <td>:</td>
+            <td><input type="text" name="email"></td>
+        </tr>
+        <tr>
             <td><label for="username">Username</label></td>
             <td>:</td>
             <td><input type="text" name="username"></td>

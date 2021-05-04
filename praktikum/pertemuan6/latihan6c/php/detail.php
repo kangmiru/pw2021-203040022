@@ -8,7 +8,7 @@
 
     $id = $_GET['id'];
 
-    $fashion = query("SELECT * FROM fashion WHERE nomor = $id")[0];
+    $barang = query("SELECT * FROM barang WHERE id = $id")[0];
 ?>
 
 <!doctype html>
@@ -90,14 +90,14 @@
 
     <div class="container">
         <div class="gambar">
-            <img src="../assets/img/<?= $fashion["img"];?>" alt="">
+            <img src="../assets/img/<?= $barang["gambar"];?>" alt="">
         </div>
         <div class="keterangan">
             <ul>
-                <li><?= $fashion["nama"];?></li>
-                <li><?= $fashion["deskripsi"];?></li>
-                <li><?= $fashion["harga"];?></li>
-                <li><?= $fashion["kategori"];?></li>
+                <li><?= $barang["nama"];?></li>
+                <li><?= $barang["deskripsi"];?></li>
+                <li><?= $barang["harga"];?></li>
+                <li><?= $barang["tipe"];?></li>
             </ul>
         </div>
 

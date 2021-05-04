@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 require 'function.php';
 
 $barang = query("SELECT * FROM barang");
@@ -63,8 +66,8 @@ if (isset($_POST['cari'])) {
 </nav>
 
 <form action="" method="post" class="cari">
-    <input type="text" name="keyword" size="40" placeholder="masukan keyword pencarian..." autocomplete="off" autofocus>
-    <button type="submit" name="cari">Cari!</button>
+    <input type="text" name="keyword" size="40" placeholder="masukan keyword pencarian..." autocomplete="off" autofocus class="keyword">
+    <button type="submit" name="cari" class="tombol-cari">Cari!</button>
 </form>
 <br><br>
 

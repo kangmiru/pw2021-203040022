@@ -1,0 +1,16 @@
+.container {
+    text-align: center;
+    margin: 250px 520px;
+    background-color: aqua;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid black;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    background-color: darkblue;
+}

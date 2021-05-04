@@ -2,7 +2,7 @@
 
 require 'function.php';
 
-$fashion = query("SELECT * FROM fashion");
+$fashion = query("SELECT * FROM barang");
 
 ?>
 
@@ -34,7 +34,7 @@ $fashion = query("SELECT * FROM fashion");
 
     </style>
     
-    <title>latihan 5a</title>
+    <title>latihan 5</title>
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -97,11 +97,11 @@ $fashion = query("SELECT * FROM fashion");
                 <a href=""><button class="edit">edit</button></a>
                 <a href=""><button class="hapus">hapus</button></a> 
               </td>
-              <td><img src="../assets/img/<?= $fs["img"];?>" alt=""></td>              
-              <td><a href="php/detail.php?id=<?= $fs['nomor'];?>"><?=$fs["nama"];?></a></td>
+              <td><img src="../assets/img/<?= $fs["gambar"];?>" alt=""></td>              
+              <td><a href="php/detail.php?id=<?= $fs['id'];?>"><?=$fs["nama"];?></a></td>
               <td><?= $fs["deskripsi"];?></td>
               <td><?= $fs["harga"];?></td>
-              <td><button><?= $fs["kategori"];?></button></td>
+              <td><button><?= $fs["tipe"];?></button></td>
             </tr>
             <?php $i++?>
             <?php endforeach;?>

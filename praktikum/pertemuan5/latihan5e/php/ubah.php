@@ -2,7 +2,7 @@
 require 'function.php';
 
 $id = $_GET["id"];
-$fs = query("SELECT * FROM fashion WHERE nomor = $id")[0];
+$fs = query("SELECT * FROM barang WHERE id = $id")[0];
 
 if (isset($_POST['ubah'])) {
     if (ubah($_POST) > 0 ){
@@ -32,8 +32,8 @@ if (isset($_POST['ubah'])) {
     <form action="" method="post">
         <ul>
             <li>
-                <label for="img">Gambar</label><br>
-                <input type="text" name="img" id="img" required value="<?= $fs['img'];?>"><br><br>
+                <label for="gambar">Gambar</label><br>
+                <input type="text" name="gambar" id="gambar" required value="<?= $fs['gambar'];?>"><br><br>
             </li>
             <li>
                 <label for="nama">Nama</label><br>
@@ -48,8 +48,8 @@ if (isset($_POST['ubah'])) {
                 <input type="text" name="harga" id="harga" required value="<?= $fs['harga'];?>"><br><br>
             </li>
             <li>
-                <label for="kategori">Kategori</label><br>
-                <select name="kategori" id="kategori" required value="<?= $fs['kategori'];?>">
+                <label for="tipe">Kategori</label><br>
+                <select name="tipe" id="tipe" required value="<?= $fs['tipe'];?>">
                 <option value="">.........pilih kategori.........</option>
                 <option value="casual">casual</option>
                 <option value="sport">sport</option>

@@ -4,14 +4,14 @@ require 'function.php';
 
 if (isset($_GET["cari"])) {
   $keyword=$_GET["keyword"];
-  $fashion = query("SELECT * FROM fashion WHERE
-                  nomor LIKE '%$keyword%' OR
+  $fashion = query("SELECT * FROM barang WHERE
+                  id LIKE '%$keyword%' OR
                   nama LIKE '%$keyword%' OR
                   harga LIKE '%$keyword%' OR
-                  kategori LIKE '%$keyword%'
+                  tipe LIKE '%$keyword%'
                   ");
 }else{
-  $fashion = query("SELECT * FROM fashion");
+  $fashion = query("SELECT * FROM barang");
 }
 ?>
 
@@ -46,7 +46,7 @@ if (isset($_GET["cari"])) {
 
     </style>
     
-    <title>latihan 5 admin</title>
+    <title>latihan 5</title>
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -80,7 +80,7 @@ if (isset($_GET["cari"])) {
         </li>
       </ul>
       <ul class="navbar-nav mr-3">
-        <button class="btn">Log In</button>
+        <button class="btn">Log out</button>
       </ul>
     </div>
   </div>
@@ -118,14 +118,14 @@ if (isset($_GET["cari"])) {
             <tr>
               <td><?= $i;?></td>
               <td>
-                <a href="ubah.php?id=<?= $fs["nomor"];?>"><button class="edit">edit</button></a>
-                <a href="hapus.php?id=<?= $fs["nomor"];?>" onclick="return confirm('Hapus Data??')"><button class="hapus">hapus</button></a> 
+                <a href="ubah.php?id=<?= $fs["id"];?>"><button class="edit">edit</button></a>
+                <a href="hapus.php?id=<?= $fs["id"];?>" onclick="return confirm('Hapus Data??')"><button class="hapus">hapus</button></a> 
               </td>
-              <td><img src="../assets/img/<?= $fs["img"];?>" alt=""></td>              
-              <td><a href="php/detail.php?id=<?= $fs['nomor'];?>"><?=$fs["nama"];?></a></td>
+              <td><img src="../assets/img/<?= $fs["gambar"];?>" alt=""></td>              
+              <td><a href="php/detail.php?id=<?= $fs['id'];?>"><?=$fs["nama"];?></a></td>
               <td><?= $fs["deskripsi"];?></td>
               <td><?= $fs["harga"];?></td>
-              <td><button><?= $fs["kategori"];?></button></td>
+              <td><button><?= $fs["tipe"];?></button></td>
             </tr>
             <?php $i++?>
             <?php endforeach;?>

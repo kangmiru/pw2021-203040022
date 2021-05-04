@@ -1,7 +1,7 @@
 <?php
     require 'php/function.php';
 
-    $fashion = query("SELECT * FROM fashion");
+    $barang = query("SELECT * FROM barang");
 ?>
 
 <!doctype html>
@@ -66,13 +66,13 @@
               <th scope="col">Kategori</th>
             </tr>
             <?php $i = 1 ; ?>
-            <?php foreach ($fashion as $fs) : ?>
+            <?php foreach ($barang as $fs) : ?>
             <tr>
-              <td><img src="assets/img/<?= $fs["img"];?>" alt=""></td>              
-              <td><a href="php/detail.php?id=<?= $fs['nomor'];?>"><?=$fs["nama"];?></a></td>
+              <td><img src="assets/img/<?= $fs["gambar"];?>" alt=""></td>              
+              <td><a href="php/detail.php?id=<?= $fs['id'];?>"><?=$fs["nama"];?></a></td>
               <td><?= $fs["deskripsi"];?></td>
               <td><?= $fs["harga"];?></td>
-              <td><button><?= $fs["kategori"];?></button></td>
+              <td><button><?= $fs["tipe"];?></button></td>
             </tr>
             <?php $i++?>
             <?php endforeach;?>

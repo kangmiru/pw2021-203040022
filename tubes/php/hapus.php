@@ -18,5 +18,4 @@ if (hapus($id) > 0) {
             alert('data gagal dihapus');
             </script>";
 }
-var_dump(hapus())
 ?>

@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+    exit;
+}
+
 require 'function.php';
 
 if (isset($_POST['tambah']) > 0) {
@@ -32,11 +37,12 @@ if (isset($_POST['tambah']) > 0) {
   <body>
     <h3>Silakan Tambah Data</h3>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <ul>
             <li>
                 <label for="gambar" required>Gambar : </label><br>
-                <input type="text" name="gambar">
+                <input type="file" name="gambar" class="gambar" onchange="previewImage()">
+                <img src="../assets/img/no-image.jpg" width="120" style="display: block;" class="img-preview">
             </li>
             <li>
                 <label for="nama" autofocus autocomplete="off" required>Nama : </label><br>
@@ -72,5 +78,6 @@ if (isset($_POST['tambah']) > 0) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     -->
+    <script src="../js/script.js"></script>
   </body>
 </html>

@@ -12,7 +12,7 @@
         <ul>
             <li>
                 <label for="img">Gambar</label><br>
-                <input type="text" name="img" id="img"><br><br>
+                <input type="text" name="gambar" id="img"><br><br>
             </li>
             <li>
                 <label for="nama">Nama</label><br>
@@ -27,8 +27,8 @@
                 <input type="text" name="harga" id="harga" required><br><br>
             </li>
             <li>
-                <label for="kategori">Kategori</label><br>
-                <select name="kategori" id="kategori" required>
+                <label for="tipe">Kategori</label><br>
+                <select name="tipe" id="tipe" required>
                 <option value="">.........pilih kategori.........</option>
                 <option value="casual">casual</option>
                 <option value="sport">sport</option>

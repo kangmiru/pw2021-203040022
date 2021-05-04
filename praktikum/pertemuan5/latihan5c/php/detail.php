@@ -8,7 +8,7 @@
 
     $id = $_GET['id'];
 
-    $fashion = query("SELECT * FROM fashion WHERE nomor = $id")[0];
+    $fashion = query("SELECT * FROM barang WHERE id = $id")[0];
 ?>
 
 <!doctype html>
@@ -48,7 +48,7 @@
         background-color:lightgray;
       }
     </style>
-    <title>latihan 4c</title>
+    <title>latihan 5</title>
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -90,14 +90,14 @@
 
     <div class="container">
         <div class="gambar">
-            <img src="../assets/img/<?= $fashion["img"];?>" alt="">
+            <img src="../assets/img/<?= $fashion["gambar"];?>" alt="">
         </div>
         <div class="keterangan">
             <ul>
                 <li><?= $fashion["nama"];?></li>
                 <li><?= $fashion["deskripsi"];?></li>
                 <li><?= $fashion["harga"];?></li>
-                <li><?= $fashion["kategori"];?></li>
+                <li><?= $fashion["tipe"];?></li>
             </ul>
         </div>
 

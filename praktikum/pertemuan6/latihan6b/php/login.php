@@ -10,7 +10,7 @@
     if (isset($_POST["submit"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
-        $cek_user = mysqli_query(koneksi(), "SELECT * FROM pengguna WHERE username = '$username'");
+        $cek_user = mysqli_query(koneksi(), "SELECT * FROM user WHERE username = '$username'");
 
         if (mysqli_num_rows($cek_user) > 0 ) {
             $row = mysqli_fetch_assoc($cek_user);

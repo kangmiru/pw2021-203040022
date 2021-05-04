@@ -61,7 +61,7 @@ if (isset($_POST['ubah']) > 0) {
             </li>
             <li>
             <input type="hidden" name="foto_lama" value="<?= $p['foto'] ;?>">
-            <label for="foto">Gambar : <input type="file" name="foto" class="foto" onchage="previewImage()"></label>
+            <label for="foto">Gambar : <input type="file" name="foto" class="foto" onchange="previewImage()"></label>
                 <img src="img/<?= $p['foto'] ;?>" width="120" style="display: block;" class="img-preview">
             </li>
             <li>

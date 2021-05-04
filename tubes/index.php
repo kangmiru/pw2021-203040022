@@ -61,10 +61,6 @@ if (isset($_POST['cari'])) {
   </div>
 </nav>
 
-<form action="" method="post" class="cari">
-    <input type="text" name="keyword" size="40" placeholder="masukan keyword pencarian..." autocomplete="off" autofocus>
-    <button type="submit" name="cari">Cari!</button>
-</form>
 <br><br>
 
 <div class="container">
