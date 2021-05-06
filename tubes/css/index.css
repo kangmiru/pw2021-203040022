@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'betterday';
+    src: url(../font/Betterday.otf);
+}
+@font-face {
+    font-family: 'big-deal';
+    src: url(../font/aBigDeal.ttf);
+}
+@font-face {
+    font-family: 'creamy-sunset';
+    src: url(../font/Creamy\ Sunset.ttf);
+}
+@font-face {
+    font-family: 'simply-diet';
+    src: url(../font/Simply\ Diet.ttf);
+}
+
 .navbar-nav {
     margin-left: 500px;
 }
@@ -19,4 +36,13 @@ body {
 .cari {
     margin-top: 50px;
     margin-left: 500px;
+}
+
+.navbar-brand {
+    font-family: big-deal;
+}
+
+.nav-item {
+    font-family: simply-diet;
+    font-size: 20px;
 }

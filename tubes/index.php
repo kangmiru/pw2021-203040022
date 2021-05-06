@@ -23,6 +23,10 @@ if (isset($_POST['cari'])) {
         img {
             height: 150px;
         }
+        .detail {
+          color: black;
+          font-style: none;
+        }
     </style>
 
     <title>TUBES PW</title>
@@ -84,7 +88,7 @@ if (isset($_POST['cari'])) {
         <tr>
             <td><?= $i++ ;?></td>
             <td><img src="assets/img/<?= $b['gambar'] ;?>" alt=""></td>
-            <td><a href="php/detail1.php?id=<?= $b['id'];?>"><?= $b['nama'] ;?></a></td>
+            <td><a class="detail" href="php/detail1.php?id=<?= $b['id'];?>"><?= $b['nama'] ;?></a></td>
             <td><?= $b['harga'];?></td>
         </tr>
 
